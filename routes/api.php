@@ -10,5 +10,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('user', [AuthController::class, 'user']);
 
-    Route::apiResource('portfolios', App\Http\Controllers\Api\PortfolioController::class);
+    Route::apiResource('company-profiles', App\Http\Controllers\Api\CompanyProfileController::class);
 });

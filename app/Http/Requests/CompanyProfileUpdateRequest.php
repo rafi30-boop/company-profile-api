@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class PortfolioStoreRequest extends FormRequest
+class CompanyProfileUpdateRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,7 +16,7 @@ class PortfolioStoreRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:portfolios,slug'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique('company_profiles', 'slug')->ignore($this->route('company_profile')->id)],
             'description' => ['nullable', 'string'],
             'image_url' => ['nullable', 'url'],
             'order' => ['nullable', 'integer'],

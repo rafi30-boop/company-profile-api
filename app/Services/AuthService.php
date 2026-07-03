@@ -39,7 +39,7 @@ class AuthService implements AuthServiceInterface
 
     public function login(array $data): JsonResponse
     {
-        if (! Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+        if (!Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid credentials',
