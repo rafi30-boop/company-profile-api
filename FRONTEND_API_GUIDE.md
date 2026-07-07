@@ -224,25 +224,25 @@ Authorization: Bearer <token>
 ## 5. Checklist yang harus dilakukan frontend
 
 1. Gunakan base URL:
-   - http://localhost:8000/api
+    - http://localhost:8000/api
 
 2. Saat register/login, simpan token dari response ke localStorage atau sessionStorage.
 
 3. Untuk endpoint yang dilindungi, kirim header:
-   - Authorization: Bearer <token>
+    - Authorization: Bearer <token>
 
 4. Untuk CRUD company profiles, gunakan endpoint berikut:
-   - GET /company-profiles
-   - POST /company-profiles
-   - GET /company-profiles/{id}
-   - PUT /company-profiles/{id}
-   - DELETE /company-profiles/{id}
+    - GET /company-profiles
+    - POST /company-profiles
+    - GET /company-profiles/{id}
+    - PUT /company-profiles/{id}
+    - DELETE /company-profiles/{id}
 
 5. Kirim request body dalam format JSON dan set header Content-Type: application/json.
 
 6. Tangani response backend dengan pola:
-   - success: true => tampilkan data
-   - success: false => tampilkan message dari backend
+    - success: true => tampilkan data
+    - success: false => tampilkan message dari backend
 
 7. Jika frontend berjalan di port berbeda dari backend, pastikan CORS sudah diatur.
 
