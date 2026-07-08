@@ -16,26 +16,6 @@ class AuthService implements AuthServiceInterface
     {
     }
 
-    public function register(array $data): JsonResponse
-    {
-        $user = $this->userRepository->create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-
-        $tokenResult = $user->createToken('auth_token');
-        $token = $tokenResult->accessToken;
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Register successful',
-            'data' => [
-                'user' => new UserResource($user),
-                'token' => $token,
-            ],
-        ], 201);
-    }
 
     public function login(array $data): JsonResponse
     {

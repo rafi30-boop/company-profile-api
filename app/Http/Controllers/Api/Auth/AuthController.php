@@ -1,23 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Interfaces\AuthServiceInterface;
 use Illuminate\Http\JsonResponse;
 
+
 class AuthController extends Controller
 {
-    public function __construct(protected AuthServiceInterface $authService)
-    {
-    }
-
-    public function register(RegisterRequest $request): JsonResponse
-    {
-        return $this->authService->register($request->validated());
-    }
+    public function __construct(
+        protected AuthServiceInterface $authService
+    ) {}
 
     public function login(LoginRequest $request): JsonResponse
     {

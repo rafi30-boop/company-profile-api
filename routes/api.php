@@ -1,14 +1,13 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+Route::prefix('v1')->group(function () {
 
-Route::middleware('auth:api')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::get('user', [AuthController::class, 'user']);
+    require __DIR__.'/api/auth.php';
 
-    Route::apiResource('company-profiles', App\Http\Controllers\Api\CompanyProfileController::class);
+    require __DIR__.'/api/public.php';
+
+    require __DIR__.'/api/admin.php';
+
 });

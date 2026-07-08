@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Http\Resources\CompanyProfileResource;
 use App\Interfaces\CompanyProfileRepositoryInterface;
 use App\Models\CompanyProfile;
-use Illuminate\Http\JsonResponse;
 
 class CompanyProfileService
 {
@@ -13,53 +11,53 @@ class CompanyProfileService
     {
     }
 
-    public function index(): JsonResponse
+    /**
+     * Get single company profile (first record)
+     * Untuk Public API
+     */
+    public function get()
     {
-        return response()->json([
-            'success' => true,
-            'message' => 'Company profile list retrieved successfully',
-            'data' => CompanyProfileResource::collection($this->repository->all()),
-        ]);
+        return $this->repository->get();
     }
 
-    public function show(CompanyProfile $companyProfile): JsonResponse
+    /**
+     * Update company profile
+     * Untuk Admin API
+     */
+    public function update(array $data)
     {
-        return response()->json([
-            'success' => true,
-            'message' => 'Company profile retrieved successfully',
-            'data' => new CompanyProfileResource($companyProfile),
-        ]);
+        $company = $this->repository->get();
+        
+        if (!$company) {
+            // Jika belum ada data, buat baru
+            return $this->repository->create($data);
+        }
+        
+        // Jika sudah ada, update
+        return $this->repository->update($company, $data);
     }
 
-    public function store(array $data): JsonResponse
-    {
-        $companyProfile = $this->repository->create($data);
+    // ============================================
+    // METHOD DI BAWAH INI UNTUK MULTI DATA (OPSIONAL)
+    // ============================================
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Company profile created successfully',
-            'data' => new CompanyProfileResource($companyProfile),
-        ], 201);
+    public function index()
+    {
+        return $this->repository->all();
     }
 
-    public function update(CompanyProfile $companyProfile, array $data): JsonResponse
+    public function show(CompanyProfile $companyProfile)
     {
-        $companyProfile = $this->repository->update($companyProfile, $data);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Company profile updated successfully',
-            'data' => new CompanyProfileResource($companyProfile),
-        ]);
+        return $companyProfile;
     }
 
-    public function destroy(CompanyProfile $companyProfile): JsonResponse
+    public function store(array $data)
     {
-        $this->repository->delete($companyProfile);
+        return $this->repository->create($data);
+    }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Company profile deleted successfully',
-        ]);
+    public function destroy(CompanyProfile $companyProfile)
+    {
+        return $this->repository->delete($companyProfile);
     }
 }
