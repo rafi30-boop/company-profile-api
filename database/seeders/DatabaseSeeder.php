@@ -15,9 +15,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            AdminSeeder::class,              // Akun admin untuk CMS
-            CompanyProfileSeeder::class,     // Data Company Profile
-            AboutSeeder::class,              // Data About
+            AdminSeeder::class,
+            CompanyProfileSeeder::class,
+            AboutSeeder::class,
+            ServiceSeeder::class,
+            PortfolioSeeder::class,
+            CategorySeeder::class,
+            BlogSeeder::class,
         ]);
     }
 }
