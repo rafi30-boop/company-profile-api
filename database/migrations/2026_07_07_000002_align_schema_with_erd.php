@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        if (Schema::hasTable('abouts') && !Schema::hasTable('about')) {
-            Schema::rename('abouts', 'about');
+        if (Schema::hasTable('about') && !Schema::hasTable('about')) {
+            Schema::rename('about', 'about');
         }
 
         if (Schema::hasTable('services')) {
@@ -47,8 +47,8 @@ return new class extends Migration {
 
     public function down(): void
     {
-        if (Schema::hasTable('about') && !Schema::hasTable('abouts')) {
-            Schema::rename('about', 'abouts');
+        if (Schema::hasTable('about') && !Schema::hasTable('about')) {
+            Schema::rename('about', 'about');
         }
     }
 };

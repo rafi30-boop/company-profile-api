@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('abouts', function (Blueprint $table) {
+        Schema::create('about', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('subtitle')->nullable();
@@ -104,6 +104,6 @@ return new class extends Migration {
         Schema::dropIfExists('portfolio_images');
         Schema::dropIfExists('portfolios');
         Schema::dropIfExists('services');
-        Schema::dropIfExists('abouts');
+        Schema::dropIfExists('about');
     }
 };

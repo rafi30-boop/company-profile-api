@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Public\AboutController;
 use App\Http\Controllers\Api\Admin\CompanyProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ Route::middleware('auth.api')->group(function () {
     // Company Profile
     Route::put('/company-profile', [CompanyProfileController::class, 'update']);
 
+    
+Route::put('/about', [AboutController::class, 'update']);
     // Nanti tambahkan yang lain:
     // Route::apiResource('services', ServiceController::class);
     // Route::apiResource('portfolios', PortfolioController::class);

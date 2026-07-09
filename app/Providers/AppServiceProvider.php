@@ -9,6 +9,8 @@ use App\Repositories\CompanyProfileRepository;
 use App\Repositories\UserRepository;
 use App\Services\AuthService;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\AboutRepository;  
+use App\Interfaces\AboutRepositoryInterface;   
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
         $this->app->bind(CompanyProfileRepositoryInterface::class, CompanyProfileRepository::class);
+        $this->app->bind(AboutRepositoryInterface::class, AboutRepository::class);
     }
 
     /**

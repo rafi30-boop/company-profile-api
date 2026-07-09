@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Public\AboutController;
 use App\Http\Controllers\Api\Public\CompanyProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/company-profile', [CompanyProfileController::class, 'index']);
+
+Route::get('/about', [AboutController::class, 'index']);
